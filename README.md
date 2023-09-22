@@ -1,6 +1,12 @@
 # TP3_DEVOPS
 TP 3 Mise en place pour une application en Python d’une chaine d’intégration continue  permettant de valider l’application  avant de la packager dans une  image de conteneur
 
+## Pré-requis
+
+* Avoir sur sa machine git, docker et docker-compose installé
+* Créer un fork dans votre compte github du dépôt : https://github.com/xavnono/TP3_DEVOPS.git 
+* Cloner le dépôt : git clone https://github.com/xavnono/TP3_DEVOPS 
+
 ## Installation de jenkins
 
 * A partir du dossier cloné, se mettre dans le dossier docker et lancer la commande :
