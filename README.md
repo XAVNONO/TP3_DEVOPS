@@ -9,7 +9,7 @@ TP 3 Mise en place pour une application en Python d’une chaine d’intégratio
 
 ## Installation de jenkins
 
-* A partir du dossier cloné, se mettre dans le dossier docker et lancer la commande :
+* A partir du dossier cloné, se mettre dans le dossier docker [~/TP3/TP3_DEVOPS/Docker] et lancer la commande :
 ```
 docker-compose up -d --build
 ```
