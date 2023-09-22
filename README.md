@@ -20,7 +20,7 @@ docker-compose up -d --build
 * Une fois le conteneur lancé (vérifier qu'il est au statut up), se rendre à l'url : http://localhost:8080 pour accéder à l'interface de Jenkins
 
 ## Configurer le jenkins
-![](https://drive.google.com/file/d/173i_jAD2L4DieGryBLbwyLg-Kq68RxGo/view?usp=drive_link)
+
 * La première chose que vous demande Jenkins est le mot de passe pour dévérouiller jenkins
 ![](https://paper-attachments.dropbox.com/s_33CE5684927EB1F665F2EEF2A8A615DFA881F46F04918B588BABDF4D08ACF025_1645484899181_jenkins-getting-started.png)
 * Pour récupérer ce mot de passe afficher les logs de votre conteneur, il doit se trouver dedans :
