@@ -1,7 +1,7 @@
 FROM jenkins/jenkins:lts
 USER root
 RUN apt-get update -qq
-RUN apt install python3-pip
+RUN apt install python3-pip -qq
 RUN apt-get install -qqy apt-transport-https ca-certificates curl gnupg2 software-properties-common
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository \
