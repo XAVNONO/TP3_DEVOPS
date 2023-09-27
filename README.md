@@ -21,7 +21,7 @@ docker-compose up -d --build
 * La première chose que vous demande Jenkins est le mot de passe pour dévérouiller jenkins
 ![](https://paper-attachments.dropbox.com/s_33CE5684927EB1F665F2EEF2A8A615DFA881F46F04918B588BABDF4D08ACF025_1645484899181_jenkins-getting-started.png)
 ```
-docker exec -it  <id ou nom du conteneur> /bin/bash
+docker exec -it  tp3_devops_jenkins /bin/bash
 ```
 ```
 cat /var/jenkins_home/secrets/initialAdminPassword
