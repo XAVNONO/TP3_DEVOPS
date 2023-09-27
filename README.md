@@ -38,3 +38,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 docker commit jenkins-custom image-jenkins-custom
 ```
+Lancement d'un conteneur custom à partir d'une image custom :
+```
+docker run -d --name jenkins-configuré image_jenkins_custom
+```
