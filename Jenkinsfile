@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('Clone Github') {
             steps {
-                git credentialsId: 'token-github', url: 'https://github.com/XAVNONO/python-api-handle-it.git'
+                git credentialsId: 'token-github', url: 'https://github.com/XAVNONO/TP3_DEVOPS.git'
             }
         }
         
