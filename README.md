@@ -5,7 +5,7 @@ TP 3 Mise en place pour une application en Python d’une chaine d’intégratio
 
 * Avoir sur sa machine git, docker et docker-compose installé
 * Créer un fork dans votre compte github du dépôt : https://github.com/xavnono/TP3_DEVOPS.git 
-* Cloner le dépôt : git clone https://github.com/xavnono/TP3_DEVOPS 
+* Cloner le dépôt : `git clone https://github.com/xavnono/TP3_DEVOPS` 
 
 ## Installation de jenkins
 
