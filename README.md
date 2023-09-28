@@ -34,11 +34,3 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 ![](https://paper-attachments.dropbox.com/s_33CE5684927EB1F665F2EEF2A8A615DFA881F46F04918B588BABDF4D08ACF025_1645717974971_Screenshot+from+2022-02-24+16-52-36.png)
 * Votre Jenkins est maintenant prêt à être utilisé
 
-## création de l'image docker : image_jenkins_custom
-```
-docker commit jenkins-custom image-jenkins-custom
-```
-Lancement d'un conteneur custom à partir d'une image custom :
-```
-docker run -d --name jenkins-configure image_jenkins_custom
-```
