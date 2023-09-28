@@ -21,7 +21,7 @@ docker-compose up -d --build
 * La première chose que vous demande Jenkins est le mot de passe pour dévérouiller jenkins
 ![](https://paper-attachments.dropbox.com/s_33CE5684927EB1F665F2EEF2A8A615DFA881F46F04918B588BABDF4D08ACF025_1645484899181_jenkins-getting-started.png)
 
-* Pour afficher ce mot de passe, effectuer les 2 commandes suivantes :
+* Pour afficher ce mot de passe, effectuer les 2 commandes suivantes puis `copier/coller`
 ```
 docker exec -it  jenkins-custom /bin/bash
 ```
@@ -31,6 +31,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 
 * Ensuite Jenkins vous propose d'installer les plugins suggérés ou de choisir les plugins à installé, laissez l'option par défaut d'installer les plugins suggérés :
 ![](https://paper-attachments.dropbox.com/s_33CE5684927EB1F665F2EEF2A8A615DFA881F46F04918B588BABDF4D08ACF025_1645661908679_plugins-installation.png)
+
 * Puis Jenkins vous demande de créer un compte administrateur, remplir le formulaire et cliquer sur  `Save and continue`
 ![](https://paper-attachments.dropbox.com/s_33CE5684927EB1F665F2EEF2A8A615DFA881F46F04918B588BABDF4D08ACF025_1645717974971_Screenshot+from+2022-02-24+16-52-36.png)
 * Votre Jenkins est maintenant prêt à être utilisé
