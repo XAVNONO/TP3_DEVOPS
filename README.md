@@ -41,8 +41,8 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 * créer les crédentials dans jenkins nécessaire au lancement du pipeline via le fichier `Credentials&Plugin.txt` fournis en privée comme suit :
 ![](https://drive.google.com/uc?id=14iCq9SBnpqux9EhNYuxG_dKd9fxxhF23)
 ![](https://drive.google.com/uc?id=1rj-0o38o6U9rsYUf59Xgi5P28HidguB5)
-
 * Installer le plugin suivant via Administrer Jenkins / Plugins
+  
 ![](https://drive.google.com/uc?id=1pY_x2ZkH0x3489rh6kQqImzkUseoxGO1)
 
 
