@@ -1,14 +1,14 @@
 pipeline {
 
-        // environment {
-        // registry = "xavnono/mypylint"
-        // registry2 = "xavnono/myunittest"
-        // registry3 = "xavnono/mypythonapp"
-        // registryCredential = 'dockerhub'
-        // dockerImage = ''
-        // dockerImage2 = ''
-        // dockerImage3 = ''
-        // }
+        environment {
+        registry = "xavnono/mypylint"
+        registry2 = "xavnono/myunittest"
+        registry3 = "xavnono/mypythonapp"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+        dockerImage2 = ''
+        dockerImage3 = ''
+        }
 
     agent any
     stages {
@@ -18,84 +18,84 @@ pipeline {
             }
         }
         
-    //     stage('Build Pylint image') {
-    //         steps {
-    //             script {
-    //                 dockerImage = docker.build (registry + ":$BUILD_NUMBER","-f docker-test/pylint/Dockerfile docker-test/pylint/")
-    //             }
-    //         }
-    //     }
+        stage('Build Pylint image') {
+            steps {
+                script {
+                    dockerImage = docker.build (registry + ":$BUILD_NUMBER","-f docker-test/pylint/Dockerfile docker-test/pylint/")
+                }
+            }
+        }
         
-    //     stage('Push pylint image') {
-    //         steps {
-    //             script {
-    //                 docker.withRegistry( '', registryCredential ) {
-    //                 dockerImage.push()
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Push pylint image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
+        }
         
-    //     stage ('Pylint'){
-    //         agent {
-    //             docker {
-    //                 image 'xavnono/mypylint'
-    //                 args '-v ${PWD}:/app'
-    //                 reuseNode true
-    //             }
-    //         }
-    //         steps {
-    //             sh 'mkdir -p app/reports/pylint; pylint --output-format json --recursive yes --exit-zero app > app/reports/pylint/report.json;pylint-json2html -o app/reports/pylint/report.html app/reports/pylint/report.json'
-    //         }
-    //     }
+        stage ('Pylint'){
+            agent {
+                docker {
+                    image 'xavnono/mypylint'
+                    args '-v ${PWD}:/app'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'mkdir -p app/reports/pylint; pylint --output-format json --recursive yes --exit-zero app > app/reports/pylint/report.json;pylint-json2html -o app/reports/pylint/report.html app/reports/pylint/report.json'
+            }
+        }
         
-    //     stage('Build Unittest image') {
-    //         steps {
-    //             script {
-    //                 dockerImage2 = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
-    //             }
-    //         }
-    //     }
+        stage('Build Unittest image') {
+            steps {
+                script {
+                    dockerImage2 = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
+                }
+            }
+        }
         
-    //     stage('Push unittest image') {
-    //         steps {
-    //             script {
-    //                 docker.withRegistry( '', registryCredential ) {
-    //                 dockerImage2.push()
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Push unittest image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage2.push()
+                    }
+                }
+            }
+        }
         
-    //     stage ('Unittests'){
-    //         agent {
-    //             docker {
-    //                 image 'xavnono/myunittest'
-    //                 args '-v ${PWD}:/app'
-    //                 reuseNode true
-    //             }
-    //         }
-    //         steps {
-    //             sh 'cd app; python -m unittest test/unit/test.py '
-    //         }
-    //     }
+        stage ('Unittests'){
+            agent {
+                docker {
+                    image 'xavnono/myunittest'
+                    args '-v ${PWD}:/app'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'cd app; python -m unittest test/unit/test.py '
+            }
+        }
        
         
-    //     stage('Build image') {
-    //         steps {
-    //             script {
-    //                 dockerImage3 = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
-    //             }
-    //         }
-    //     }
-    //      stage('Push image') {
-    //         steps {
-    //             script {
-    //                 docker.withRegistry( '', registryCredential ) {
-    //                 dockerImage3.push()
-    //                 }
-    //             }
-    //         }
-    //  }
+        stage('Build image') {
+            steps {
+                script {
+                    dockerImage3 = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
+                }
+            }
+        }
+         stage('Push image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage3.push()
+                    }
+                }
+            }
+        }
     }
 }  
