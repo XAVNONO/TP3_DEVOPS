@@ -36,8 +36,6 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 ![](https://drive.google.com/uc?id1wkO1-XPj0SYHAm3rkttvXEKIFD1W4k4w)
 * Votre Jenkins est maintenant prêt à être utilisé
 
-![](https://drive.google.com/uc?id=169QMaZ45XptFC9ddSqQQ-734HPn0YBdB)
-
 ## Configurer les Crédentials et les Plugins
 
 * créer les crédentials dans jenkins nécessaire au lancement du pipeline via le fichier `Credentials&Plugin.txt` fournis en privée comme suit :
