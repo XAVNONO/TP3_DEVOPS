@@ -1,5 +1,6 @@
 pipeline {
 
+//>>>>>Définition paramétres d'environnements et images
         environment {
         registry = "xavnono/mypylint"
         registry2 = "xavnono/myunittest"
@@ -11,13 +12,17 @@ pipeline {
         }
 
     agent any
+
+//>>>>>Récupéreration du code source du dépôt github
     stages {
         stage('Clone Github') {
             steps {
                 git branch: 'main', credentialsId: 'token-github', url: 'https://github.com/XAVNONO/TP3_DEVOPS.git'
             }
         }
-        
+
+//>>>>>Lancer un linter qui vérifiera les normes de codage (+rapport)
+        //>>>>>Pylint        
         stage('Build Pylint image') {
             steps {
                 script {
@@ -48,7 +53,18 @@ pipeline {
                 sh 'mkdir -p app/reports/pylint; pylint --output-format json --recursive yes --exit-zero app > app/reports/pylint/report.json;pylint-json2html -o app/reports/pylint/report.html app/reports/pylint/report.json'
             }
         }
-        
+
+//>>>>>Vérifier les copier-coller dans le code (+rapport)
+        //>>>>>Les outils pycodestyle , pydocstyle et pylint
+
+
+//>>>>>Analyser la complexité cyclomatique (+rapport)
+        //>>>>>SonarQube
+
+
+
+//>>>>>Lancer les tests unitaires de l’application (+rapport)
+        //>>>>>Unitest
         stage('Build Unittest image') {
             steps {
                 script {
@@ -80,7 +96,7 @@ pipeline {
             }
         }
        
-        
+//>>>>>Construire l'image de Docker pour vérification
         stage('Build image') {
             steps {
                 script {
@@ -88,6 +104,8 @@ pipeline {
                 }
             }
         }
+        
+//>>>>>Pusher l’image Docker sur le docker hub
          stage('Push image') {
             steps {
                 script {
