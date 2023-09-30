@@ -101,7 +101,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'mkdir -p app/reports/unittest; unittest --output-format json python -m unittest test/unit/test.py > app/reports/unittest/report.json;unittest-json2html -o app/reports/unittest/report.html app/reports/unittest/report.json'
+                sh 'cd app; python -m unittest test/unit/test.py '
+                // sh 'mkdir -p app/reports/unittest; unittest --output-format json python -m unittest test/unit/test.py > app/reports/unittest/report.json;unittest-json2html -o app/reports/unittest/report.html app/reports/unittest/report.json'
             }
         }
         
