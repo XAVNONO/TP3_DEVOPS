@@ -98,7 +98,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'cd app; python -m unittest test/unit/test.py '
+                sh 'mkdir -p app/reports/unittest; unittest --output-format json python -m unittest test/unit/test.py > app/reports/unittest/report.json;unittest-json2html -o app/reports/unittest/report.html app/reports/unittest/report.json'
             }
         }
         
@@ -107,13 +107,13 @@ pipeline {
                 publishHTML (target : [allowMissing: false,
                      alwaysLinkToLastBuild: true,
                      keepAll: true,
-                     reportDir: 'app/reports/pylint/',
+                     reportDir: 'app/reports/unittest/',
                      reportFiles: 'report.html',
-                     reportName: 'My Pylint Reports',
+                     reportName: 'My unittest Reports',
                      reportTitles: 'The Report'])
             }
         }
-        
+
 //>>>>>Construire l'image de Docker pour vérification
         // stage('Build image') {
         //     steps {
