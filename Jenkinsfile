@@ -109,7 +109,7 @@ pipeline {
             }
         }
 
-//>>>>>Construire l'image Applicative
+//>>>>>Construire l'image Docker Applicative
         stage('Build image APP') {
             steps {
                 script {
@@ -118,7 +118,7 @@ pipeline {
             }
         }
         
-//>>>>>Pusher l’image Docker sur le docker hub
+//>>>>>Pusher l’image Docker Applicative sur le docker hub
          stage('Push image APP') {
             steps {
                 script {
