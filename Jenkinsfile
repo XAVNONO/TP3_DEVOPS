@@ -70,7 +70,7 @@ pipeline {
 
 
 //>>>>>Lancer les tests unitaires de l’application (+rapport)
-        >>>>>Unitest
+        // >>>>>Unitest
         stage('Build Unittest image') {
             steps {
                 script {
