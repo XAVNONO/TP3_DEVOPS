@@ -7,7 +7,6 @@ pipeline {
         registry3 = "xavnono/mypythonapp"
         registryCredential = 'dockerhub'
         dockerImage = ''
-        dockerImage2 = ''
         }
 
     agent any
@@ -20,8 +19,7 @@ pipeline {
             }
         }
 
-//>>>>>Lancer un linter qui vérifiera les normes de codage (+rapport)
-        //>>>>>Pylint        
+//>>>>>Pylint        
         stage('Build Pylint image') {
             steps {
                 script {
@@ -66,17 +64,11 @@ pipeline {
             }
         }
 
-//>>>>>Analyser la complexité cyclomatique (+rapport)
-        //>>>>>SonarQube
-
-
-
-//>>>>>Lancer les tests unitaires de l’application (+rapport)
-        // >>>>>Unitest
+// >>>>>Unitest
         stage('Build Unittest image') {
             steps {
                 script {
-                    dockerImage2 = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
+                    dockerImage = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
                 }
             }
         }
@@ -85,8 +77,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                    dockerImage2.push 'latest'
-                    dockerImage2.push()
+                    dockerImage.push 'latest'
+                    dockerImage.push()
                     }
                 }
             }
@@ -117,24 +109,24 @@ pipeline {
             }
         }
 
-//>>>>>Construire l'image de Docker pour vérification
-        // stage('Build image') {
-        //     steps {
-        //         script {
-        //             dockerImage = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
-        //         }
-        //     }
-        // }
+//>>>>>Construire l'image Applicative
+        stage('Build image') {
+            steps {
+                script {
+                    dockerImage = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
+                }
+            }
+        }
         
 //>>>>>Pusher l’image Docker sur le docker hub
-        //  stage('Push image') {
-        //     steps {
-        //         script {
-        //             docker.withRegistry( '', registryCredential ) {
-        //             dockerImage.push()
-        //             }
-        //         }
-        //     }
-        // }
+         stage('Push image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
+        }
     }
 }  
