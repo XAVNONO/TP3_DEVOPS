@@ -7,8 +7,6 @@ pipeline {
         registry3 = "xavnono/mypythonapp"
         registryCredential = 'dockerhub'
         dockerImage = ''
-        dockerImage2 = ''
-        dockerImage3 = ''
         }
 
     agent any
@@ -68,7 +66,7 @@ pipeline {
         stage('Build Unittest image') {
             steps {
                 script {
-                    dockerImage2 = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
+                    dockerImage = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
                 }
             }
         }
@@ -77,7 +75,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                    dockerImage2.push()
+                    dockerImage.push()
                     }
                 }
             }
@@ -100,7 +98,7 @@ pipeline {
         stage('Build image') {
             steps {
                 script {
-                    dockerImage3 = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
+                    dockerImage = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
                 }
             }
         }
@@ -110,7 +108,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                    dockerImage3.push()
+                    dockerImage.push()
                     }
                 }
             }
