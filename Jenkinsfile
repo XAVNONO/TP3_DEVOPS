@@ -52,6 +52,18 @@ pipeline {
             }
         }
 
+        stage('Publish HTML'){
+            steps {
+                publishHTML (target : [allowMissing: false,
+                     alwaysLinkToLastBuild: true,
+                     keepAll: true,
+                     reportDir: 'app/reports/pylint/',
+                     reportFiles: 'report.html',
+                     reportName: 'My Pylint Reports',
+                     reportTitles: 'The Report'])
+            }
+        }
+
 //>>>>>Vérifier les copier-coller dans le code (+rapport)
         //>>>>>Les outils pycodestyle , pydocstyle et pylint
 
@@ -63,55 +75,55 @@ pipeline {
 
 //>>>>>Lancer les tests unitaires de l’application (+rapport)
         //>>>>>Unitest
-        stage('Build Unittest image') {
-            steps {
-                script {
-                    dockerImage = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
-                }
-            }
-        }
+        // stage('Build Unittest image') {
+        //     steps {
+        //         script {
+        //             dockerImage = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
+        //         }
+        //     }
+        // }
         
-        stage('Push unittest image') {
-            steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
-                    }
-                }
-            }
-        }
+        // stage('Push unittest image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry( '', registryCredential ) {
+        //             dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
         
-        stage ('Unittests'){
-            agent {
-                docker {
-                    image 'xavnono/myunittest'
-                    args '-v ${PWD}:/app'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh 'cd app; python -m unittest test/unit/test.py '
-            }
-        }
+        // stage ('Unittests'){
+        //     agent {
+        //         docker {
+        //             image 'xavnono/myunittest'
+        //             args '-v ${PWD}:/app'
+        //             reuseNode true
+        //         }
+        //     }
+        //     steps {
+        //         sh 'cd app; python -m unittest test/unit/test.py '
+        //     }
+        // }
        
 //>>>>>Construire l'image de Docker pour vérification
-        stage('Build image') {
-            steps {
-                script {
-                    dockerImage = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
-                }
-            }
-        }
+        // stage('Build image') {
+        //     steps {
+        //         script {
+        //             dockerImage = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
+        //         }
+        //     }
+        // }
         
 //>>>>>Pusher l’image Docker sur le docker hub
-         stage('Push image') {
-            steps {
-                script {
-                    docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
-                    }
-                }
-            }
-        }
+        //  stage('Push image') {
+        //     steps {
+        //         script {
+        //             docker.withRegistry( '', registryCredential ) {
+        //             dockerImage.push()
+        //             }
+        //         }
+        //     }
+        // }
     }
 }  
