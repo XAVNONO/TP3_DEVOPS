@@ -110,7 +110,7 @@ pipeline {
         }
 
 //>>>>>Construire l'image Applicative
-        stage('Build image') {
+        stage('Build image APP') {
             steps {
                 script {
                     dockerImage = docker.build (registry3 + ":$BUILD_NUMBER","-f docker-app/python/Dockerfile .")
@@ -119,7 +119,7 @@ pipeline {
         }
         
 //>>>>>Pusher l’image Docker sur le docker hub
-         stage('Push image') {
+         stage('Push image APP') {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
