@@ -110,9 +110,9 @@ pipeline {
                 publishHTML (target : [allowMissing: false,
                      alwaysLinkToLastBuild: true,
                      keepAll: true,
-                     reportDir: 'reports',
-                     reportFiles: 'myreport.html',
-                     reportName: 'My Reports',
+                     reportDir: 'reports/unittest',
+                     reportFiles: 'report.html',
+                     reportName: 'report',
                      reportTitles: 'The Report'])
             }
         }
