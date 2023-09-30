@@ -105,14 +105,14 @@ pipeline {
             }
         }
         
-        stage('Publish HTML Unittest'){
+        stage('Publish HTML unittest'){
             steps {
                 publishHTML (target : [allowMissing: false,
                      alwaysLinkToLastBuild: true,
                      keepAll: true,
-                     reportDir: 'reports/unittest',
+                     reportDir: 'app/reports/unittest/',
                      reportFiles: 'report.html',
-                     reportName: 'report',
+                     reportName: 'My unittest Reports',
                      reportTitles: 'The Report'])
             }
         }
