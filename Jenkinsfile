@@ -7,6 +7,7 @@ pipeline {
         registry3 = "xavnono/mypythonapp"
         registryCredential = 'dockerhub'
         dockerImage = ''
+        dockerImage2 = ''
         }
 
     agent any
@@ -74,7 +75,7 @@ pipeline {
         stage('Build Unittest image') {
             steps {
                 script {
-                    dockerImage = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
+                    dockerImage2 = docker.build (registry2 + ":$BUILD_NUMBER","-f docker-test/unittest/Dockerfile docker-test/unittest/")
                 }
             }
         }
@@ -83,7 +84,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry( '', registryCredential ) {
-                    dockerImage.push()
+                    dockerImage2.push()
                     }
                 }
             }
