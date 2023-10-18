@@ -39,18 +39,18 @@ pipeline {
             }
         }
         
-        stage ('Pylint'){
-            agent {
-                docker {
-                    image 'xavnono/mypylint'
-                    args '-v ${PWD}:/app'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh 'mkdir -p app/reports/pylint; pylint --output-format json --recursive yes --exit-zero app > app/reports/pylint/report.json;pylint-json2html -o app/reports/pylint/report.html app/reports/pylint/report.json'
-            }
-        }
+        // stage ('Pylint'){
+        //     agent {
+        //         docker {
+        //             image 'xavnono/mypylint'
+        //             args '-v ${PWD}:/app'
+        //             reuseNode true
+        //         }
+        //     }
+        //     steps {
+        //         sh 'mkdir -p app/reports/pylint; pylint --output-format json --recursive yes --exit-zero app > app/reports/pylint/report.json;pylint-json2html -o app/reports/pylint/report.html app/reports/pylint/report.json'
+        //     }
+        // }
 
         stage('Publish HTML Pylint'){
             steps {
