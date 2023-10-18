@@ -39,30 +39,30 @@ pipeline {
             }
         }
         
-        // stage ('Pylint'){
-        //     agent {
-        //         docker {
-        //             image 'xavnono/mypylint'
-        //             args '-v ${PWD}:/app'
-        //             reuseNode true
-        //         }
-        //     }
-        //     steps {
-        //         sh 'mkdir -p app/reports/pylint; pylint --output-format json --recursive yes --exit-zero app > app/reports/pylint/report.json;pylint-json2html -o app/reports/pylint/report.html app/reports/pylint/report.json'
-        //     }
-        // }
+        stage ('Pylint'){
+            agent {
+                docker {
+                    image 'xavnono/mypylint'
+                    args '-v ${PWD}:/app'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh 'mkdir -p app/reports/pylint; pylint --output-format json --recursive yes --exit-zero app > app/reports/pylint/report.json;pylint-json2html -o app/reports/pylint/report.html app/reports/pylint/report.json'
+            }
+        }
 
-        // stage('Publish HTML Pylint'){
-        //     steps {
-        //         publishHTML (target : [allowMissing: false,
-        //              alwaysLinkToLastBuild: true,
-        //              keepAll: true,
-        //              reportDir: 'app/reports/pylint/',
-        //              reportFiles: 'report.html',
-        //              reportName: 'My Pylint Reports',
-        //              reportTitles: 'The Report'])
-        //     }
-        // }
+        stage('Publish HTML Pylint'){
+            steps {
+                publishHTML (target : [allowMissing: false,
+                     alwaysLinkToLastBuild: true,
+                     keepAll: true,
+                     reportDir: 'app/reports/pylint/',
+                     reportFiles: 'report.html',
+                     reportName: 'My Pylint Reports',
+                     reportTitles: 'The Report'])
+            }
+        }
 
 // >>>>>Unitest
         stage('Build Unittest image') {
