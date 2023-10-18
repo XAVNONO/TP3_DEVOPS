@@ -52,17 +52,17 @@ pipeline {
         //     }
         // }
 
-        stage('Publish HTML Pylint'){
-            steps {
-                publishHTML (target : [allowMissing: false,
-                     alwaysLinkToLastBuild: true,
-                     keepAll: true,
-                     reportDir: 'app/reports/pylint/',
-                     reportFiles: 'report.html',
-                     reportName: 'My Pylint Reports',
-                     reportTitles: 'The Report'])
-            }
-        }
+        // stage('Publish HTML Pylint'){
+        //     steps {
+        //         publishHTML (target : [allowMissing: false,
+        //              alwaysLinkToLastBuild: true,
+        //              keepAll: true,
+        //              reportDir: 'app/reports/pylint/',
+        //              reportFiles: 'report.html',
+        //              reportName: 'My Pylint Reports',
+        //              reportTitles: 'The Report'])
+        //     }
+        // }
 
 // >>>>>Unitest
         stage('Build Unittest image') {
